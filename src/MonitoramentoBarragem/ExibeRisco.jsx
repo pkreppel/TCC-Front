@@ -68,7 +68,7 @@ export class ExibeRisco extends Component {
     }
  
     handleDelete(id) {
-        if (!window.confirm("Deseja deletar o Risco com id : " + id))
+        if (!window.confirm("Deseja realmente deletar este Risco?"))
             return;
         else {
            riscoService.delete(id)
@@ -93,7 +93,7 @@ export class ExibeRisco extends Component {
             ? <p><em>Carregando...</em></p>
             : this.renderRiscoTable(this.state.riscos);
         return <div>
-            <h2>Riscos</h2>
+            <h2 style={{ color :"#892610"}}>Riscos</h2>
             <p>
                 <Button color="primary" onClick={this.handelNew}>Criar Novo</Button>
             </p>
@@ -103,8 +103,8 @@ export class ExibeRisco extends Component {
     // Retorna uma tabela HTML para o método render().  
     renderRiscoTable(riscoLista) {
         return <div>
-        <div class="table-responsive">
-        <table className='table'>
+        <div className="table-responsive">
+        <table className='table table-striped'>
             <thead>
                 <tr>
                     <th></th>
@@ -125,8 +125,8 @@ export class ExibeRisco extends Component {
                         <td>{emp.descricaoRisco}</td>
                         <td>{emp.dataCadastro}</td>
                         <td>
-                            <Button outline onClick={(id) => this.handleEdit(emp)} color="primary">Editar</Button>{' '}
-                            <Button outline onClick={(id) => this.handleDelete(emp.riscoID)} color="danger">Deletar</Button>
+                            <Button outline onClick={(id) => this.handleEdit(emp)} size="sm" color="primary">Editar</Button>{' '}
+                            <Button outline onClick={(id) => this.handleDelete(emp.riscoID)} size="sm" color="danger">Deletar</Button>
                             
                         </td>
                     </tr>

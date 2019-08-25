@@ -142,8 +142,8 @@ export class MonitoramentoBarragem extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col sm="12" md={{ size: 8, offset: 2 }}>
-                            <h2>Dashboard Monitoramento de Barragens</h2>
+                        <Col md="12">
+                            <h2 style={{ color :"#892610"}}>Dashboard</h2>
                         </Col>
                     </Row>
                     <Row>

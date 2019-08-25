@@ -52,7 +52,7 @@ export class ExibeTipoRisco extends Component {
         }));
     }
     handleDelete(id) {
-        if (!window.confirm("Deseja deletar o Tipo de Risco com id : " + id))
+        if (!window.confirm("Deseja realmente deletar este Tipo de Risco"))
             return;
         else {
             tipoRiscoService.delete(id)
@@ -85,7 +85,7 @@ export class ExibeTipoRisco extends Component {
             ? <p><em>Carregando...</em></p>
             : this.renderTipoRiscoTable(this.state.tiposRisco);
         return <div>
-            <h2>Tipos de Risco</h2>
+            <h2 style={{ color :"#892610"}}>Tipos de Risco</h2>
             <p>
                 <Button color="primary" onClick={this.handelNew}>Criar Novo</Button>
             </p>
@@ -95,8 +95,8 @@ export class ExibeTipoRisco extends Component {
     // Retorna uma tabela HTML para o método render().  
     renderTipoRiscoTable(tipoRiscoLista) {
         return <div>
-        <div class="table-responsive">
-        <table className='table'>
+        <div className="table-responsive">
+        <table className='table table-striped'>
             <thead>
                 <tr>
                     <th></th>
@@ -113,8 +113,8 @@ export class ExibeTipoRisco extends Component {
                         <td>{emp.criticidade}</td>
                         <td>{emp.localTipoRisco}</td>
                         <td>
-                            <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleEdit(emp)} color="primary">Editar</Button>{' '}
-                            <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleDelete(emp.tipoRiscoID)} color="danger">Deletar</Button>
+                            <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleEdit(emp)} size="sm" color="primary">Editar</Button>{' '}
+                            <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleDelete(emp.tipoRiscoID)} size="sm" color="danger">Deletar</Button>
                         </td>
                     </tr>
                 )}

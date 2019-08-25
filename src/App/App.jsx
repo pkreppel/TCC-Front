@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -8,12 +8,13 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
-import { ExibeContato, FetchData, Counter } from '../_components';
+import { Layout } from '../_components';
 import { ExibeTipoRisco, ExibeRisco, MonitoramentoBarragem } from '../MonitoramentoBarragem'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
+        
 
         history.listen((location, action) => {
             // clear alert on location change
@@ -23,24 +24,38 @@ class App extends React.Component {
 
     render() {
         const { alert } = this.props;
-        return (
+
+        const LoginContainer = () => (
             <div>
-                {alert.message &&
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+            </div>
+          )
+
+        const DefaultContainer = () => (
+            <div>
+            {alert.message &&
                     <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
-                <Router history={history}>
-                    <div>
-                        <PrivateRoute exact path="/" component={HomePage}/>
-                        <PrivateRoute path='/exibe-contato' component={ExibeContato} />
-                        <PrivateRoute path='/counter' component={Counter} />
-                        <PrivateRoute path='/fetch-data' component={FetchData} />
+                {window.location.pathname != "/login" ?
+                    <Layout>
+                        <PrivateRoute exact path="/" component={HomePage}/>   
                         <PrivateRoute path='/exibe-tipo-risco' component={ExibeTipoRisco} />
                         <PrivateRoute path='/exibe-risco' component={ExibeRisco} />
                         <PrivateRoute path='/monitoramento' component={MonitoramentoBarragem} />
-                        
-                        <Route path="/login" component={LoginPage} />
-                        <Route path="/register" component={RegisterPage} />
-                    </div>
+                    </Layout> : <div></div>}
+            </div>
+         ) 
+
+        return (
+            <div>
+                <Router history={history}>
+                    <Switch>
+                        <div>
+                            <Route exact path="/login" component={LoginContainer}/> 
+                            <Route component={DefaultContainer}/> 
+                        </div>
+                    </Switch>
                 </Router>
             </div>
         );

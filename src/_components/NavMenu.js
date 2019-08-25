@@ -26,7 +26,7 @@ export class NavMenu extends Component {
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/">SICA</NavbarBrand>
+                        <NavbarBrand tag={Link} style={{ color :"#892610"}} to="/">SICA</NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
@@ -45,7 +45,7 @@ export class NavMenu extends Component {
                                             <NavLink tag={Link} className="text-dark" to="/exibe-risco">Monitoramento de Riscos</NavLink>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <NavLink tag={Link} className="text-dark" to="/monitoramento">Monitoramento de Barragens</NavLink>
+                                            <NavLink tag={Link} className="text-dark" to="/monitoramento">DashBoard</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
