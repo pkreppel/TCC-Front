@@ -11,16 +11,28 @@ export default class TipoRiscoForm extends React.Component {
 
         this.state = {
             tipoRisco: {
-                nomeTipoRisco: this.props.tipotipoRiscoEdit ? this.props.tipoRiscoEdit.nomeTipoRisco : "",
+                nomeTipoRisco: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.nomeTipoRisco : "",
                 //tipoRiscoID: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.tipoRiscoID : "",
-                criticidade: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.criticidade : "",
+                criticidade: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.criticidadeID : "",
                 localTipoRisco: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.localTipoRisco : "",
+                tipoRiscoID: this.props.tipoRiscoEdit ? this.props.tipoRiscoEdit.tipoRiscoID : "",
             },
-            submitted: false
+            submitted: false,
+            listaCriticidade: []
         };        
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getCriticidade = this.getCriticidade.bind(this);
+    }
+
+    componentDidMount(){
+        this.getCriticidade();
+    }
+
+    getCriticidade(){
+        tipoRiscoService.getAllCriticidade()
+        .then(data => {this.setState({ listaCriticidade: data });});
     }
 
     handleChange(event) {
@@ -40,11 +52,8 @@ export default class TipoRiscoForm extends React.Component {
         this.setState({ submitted: true });
         const { tipoRisco } = this.state;
         if (tipoRisco.nomeTipoRisco && tipoRisco.criticidade && tipoRisco.localTipoRisco ) {
-            
+            debugger;
             if(this.props.tipoRiscoEdit != null) {
-                //this.props.tipoRiscoEdit.nomeTipoRisco = risco.descricaoRisco;
-                //this.props.tipoRiscoEdit.tipoRiscoID = risco.tipoRiscoID;
-            
                 tipoRiscoService.update(tipoRisco.tipoRiscoID, tipoRisco)
                 .then(this.props.showSuccesModal);
             }
@@ -59,7 +68,7 @@ export default class TipoRiscoForm extends React.Component {
 
     render() {
         const { registering  } = this.props;
-        const { tipoRisco, submitted } = this.state;
+        const { tipoRisco, submitted, listaCriticidade } = this.state;
         return (
             <div>
                 <form name="form">
@@ -70,9 +79,15 @@ export default class TipoRiscoForm extends React.Component {
                             <div className="help-block">Nome do Tipo de Risco é obrigatório</div>
                         }
                     </div>
+                    
                     <div className={'form-group' + (submitted && !tipoRisco.criticidade ? ' has-error' : '')}>
                         <label htmlFor="criticidade">Criticidade</label>
-                        <input type="text" className="form-control" name="criticidade" value={tipoRisco.criticidade} onChange={this.handleChange}/>
+                        <select className="form-control" name="criticidade" onChange={this.handleChange}>
+                        <option key={0} value={""}>Selecione...</option>
+                        {listaCriticidade.map(item=> 
+                            <option key={item.criticidadeID} value={item.criticidadeID} selected={this.props.tipoRiscoEdit && (item.criticidadeID == this.props.tipoRiscoEdit.criticidadeID)} >{item.tituloCriticidade}</option>
+                        )}
+                        </select>
                         {submitted && !tipoRisco.criticidade &&
                             <div className="help-block">Criticidade é obrigatório</div>
                         }
@@ -91,15 +106,3 @@ export default class TipoRiscoForm extends React.Component {
         );
     }
 }
-
-/*function mapState(state) {
-    const { registering } = state.registration;
-    return { registering };
-}
-
-const actionCreators = {
-    register: userActions.register
-}
-
-const connectedRiscoPage = connect(mapState, actionCreators)(CadastroRisco);
-export { connectedRiscoPage as CadastroRisco };*/

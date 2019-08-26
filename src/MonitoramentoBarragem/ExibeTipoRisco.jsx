@@ -110,7 +110,7 @@ export class ExibeTipoRisco extends Component {
                     <tr key={emp.tipoRiscoID}>
                         <td></td>
                         <td>{emp.nomeTipoRisco}</td>
-                        <td>{emp.criticidade}</td>
+                        <td>{emp.critidadeNome}</td>
                         <td>{emp.localTipoRisco}</td>
                         <td>
                             <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleEdit(emp)} size="sm" color="primary">Editar</Button>{' '}

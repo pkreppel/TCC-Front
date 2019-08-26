@@ -6,7 +6,9 @@ export const tipoRiscoService = {
     getAll,
     delete: _delete,
     post,
-    update
+    update,
+    getAllCriticidade
+
 }
 
 function getAll() {
@@ -15,6 +17,16 @@ function getAll() {
         headers: authHeader()
     };
     const datax = fetch(`${config.apiUrl}/api/TipoRisco/`, requestOptions)
+    .then(userService.handleResponse);
+    return datax;
+}
+
+function getAllCriticidade() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    const datax = fetch(`${config.apiUrl}/api/Criticidade/`, requestOptions)
     .then(userService.handleResponse);
     return datax;
 }
