@@ -76,7 +76,7 @@ export default class TipoRiscoForm extends React.Component {
                         <label htmlFor="nomeTipoRisco">Nome do Tipo de Risco</label>
                         <input type="text" className="form-control" name="nomeTipoRisco" value={tipoRisco.nomeTipoRisco} onChange={this.handleChange}/>
                         {submitted && !tipoRisco.nomeTipoRisco &&
-                            <div className="help-block">Nome do Tipo de Risco é obrigatório</div>
+                            <div className="help-block" style={{color:"red"}}>Nome do Tipo de Risco é obrigatório</div>
                         }
                     </div>
                     
@@ -89,14 +89,14 @@ export default class TipoRiscoForm extends React.Component {
                         )}
                         </select>
                         {submitted && !tipoRisco.criticidade &&
-                            <div className="help-block">Criticidade é obrigatório</div>
+                            <div className="help-block" style={{color:"red"}}>Criticidade é obrigatório</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !tipoRisco.localTipoRisco ? ' has-error' : '')}>
                         <label htmlFor="localTipoRisco">Local onde se aplica</label>
                         <input type="text" className="form-control" name="localTipoRisco" value={tipoRisco.localTipoRisco} onChange={this.handleChange} />
                         {submitted && !tipoRisco.localTipoRisco &&
-                            <div className="help-block">Local onde se aplica é obrigatório</div>
+                            <div className="help-block" style={{color:"red"}}>Local onde se aplica é obrigatório</div>
                         }
                     </div>
                     <Button color="danger" id="btnCancel" onClick={this.props.cancel}>Cancelar</Button>{' '}

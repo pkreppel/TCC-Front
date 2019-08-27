@@ -35,7 +35,7 @@ class App extends React.Component {
             {alert.message &&
                     <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
-                {window.location.pathname != "/login" ?
+                {window.location.pathname != "/login" && window.location.pathname != "/register" ?
                     <Layout>
                         <PrivateRoute exact path="/" component={HomePage}/>   
                         <PrivateRoute path='/exibe-tipo-risco' component={ExibeTipoRisco} />
@@ -50,7 +50,8 @@ class App extends React.Component {
                 <Router history={history}>
                     <Switch>
                         <div>
-                            <Route exact path="/login" component={LoginContainer}/> 
+                            <Route path="/login" component={LoginPage} />
+                            <Route path="/register" component={RegisterPage} /> 
                             <Route component={DefaultContainer}/> 
                         </div>
                     </Switch>

@@ -112,7 +112,7 @@ export class ExibeTipoRisco extends Component {
                         <td>{emp.nomeTipoRisco}</td>
                         <td>{emp.critidadeNome}</td>
                         <td>{emp.localTipoRisco}</td>
-                        <td>
+                        <td style={{whiteSpace: "nowrap"}}>
                             <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleEdit(emp)} size="sm" color="primary">Editar</Button>{' '}
                             <Button outline disabled={!emp.editDelete} onClick={(id) => this.handleDelete(emp.tipoRiscoID)} size="sm" color="danger">Deletar</Button>
                         </td>

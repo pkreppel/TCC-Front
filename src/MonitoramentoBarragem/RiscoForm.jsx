@@ -80,14 +80,14 @@ export default class RiscoForm extends React.Component {
                         )}
                         </select>
                         {submitted && !risco.tipoRiscoID &&
-                            <div className="help-block">Tipo de Risco é obrigatório</div>
+                            <div className="help-block" style={{color:"red"}}>Tipo de Risco é obrigatório</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !risco.descricaoRisco ? ' has-error' : '')}>
                         <label htmlFor="descricaoRisco">Descrição do Risco</label>
                         <textarea type="text" className="form-control" name="descricaoRisco" value={risco.descricaoRisco} onChange={this.handleChange} />
                         {submitted && !risco.descricaoRisco &&
-                            <div className="help-block">Descrição é Obrigatória</div>
+                            <div className="help-block" style={{color:"red"}} >Descrição é Obrigatória</div>
                         }
                     </div>
                     <Button color="danger" id="btnCancel" onClick={this.props.cancel}>Cancelar</Button>{' '}

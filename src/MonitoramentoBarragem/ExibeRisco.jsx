@@ -93,7 +93,7 @@ export class ExibeRisco extends Component {
             ? <p><em>Carregando...</em></p>
             : this.renderRiscoTable(this.state.riscos);
         return <div>
-            <h2 style={{ color :"#892610"}}>Riscos</h2>
+            <h2 style={{ color :"#892610"}}>Monitoramento de Riscos</h2>
             <p>
                 <Button color="primary" onClick={this.handelNew}>Criar Novo</Button>
             </p>
@@ -124,7 +124,7 @@ export class ExibeRisco extends Component {
                         <td>{emp.localTipoRisco}</td>
                         <td>{emp.descricaoRisco}</td>
                         <td>{emp.dataCadastro}</td>
-                        <td>
+                        <td style={{whiteSpace: "nowrap"}}>
                             <Button outline onClick={(id) => this.handleEdit(emp)} size="sm" color="primary">Editar</Button>{' '}
                             <Button outline onClick={(id) => this.handleDelete(emp.riscoID)} size="sm" color="danger">Deletar</Button>
                             
